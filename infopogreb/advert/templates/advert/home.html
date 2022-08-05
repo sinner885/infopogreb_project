@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+    Гловна |{{ block.super }}
+{% block content %}
+
+<!-- catagory_area_start  -->
+<div class="popular_catagory_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_title mb-40">
+                    <h3>Категорії</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+            {% for category in categorys %}
+            <div class="col-lg-4 col-xl-3 col-md-6">
+                <div class="single_catagory">
+
+                    
+                    <a href="/category/{{ category.pk }}"><h4>{{ category.name }}</h4></a>
+                    
+                    <p> <span>50</span> Available position</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<!-- catagory_area_finish  -->
+
+<!-- job_listing_area_start  -->
+<div class="job_listing_area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="section_title">
+                    <h3>Останні об'яви</h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="brouse_job text-right">
+                    <a href="{% url 'advert' %}" class="boxed-btn4">Всі об'яви</a>
+                </div>
+            </div>
+        </div>
+        <div class="job_lists">
+            <div class="row">
+
+                {% for advert in adverts %}
+
+                {% comment %} <div class="col-lg-12 col-md-12">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <div class="thumb">
+
+                                {% if advert.category.icon %}
+
+                                <img src="{{ advert.category.icon.url }}" alt="">
+
+                                {% endif %}
+
+                            </div>
+                            <div class="jobs_conetent">
+                                <a href="/detail_advert/{{advert.slug}}"><h4>{{ advert.subject }}</h4></a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p>  {{ advert.category.name }}</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i> {{ advert.types_ad }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                            <div class="apply_now">
+                                <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
+                                <a href="job_details.html" class="boxed-btn3">Apply Now</a>
+                            </div>
+                            <div class="date">
+                                <p>{{ advert.created|timesince }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                {%  include 'advert/inc/advert_card_templates.html' %}
+
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</div>                
+<!-- job_listing_area_finish -->
+{% endblock %}
