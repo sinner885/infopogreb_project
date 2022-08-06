@@ -105,7 +105,7 @@ ENV/
 env.bak/ 
 venv.bak/ 
 
-infopogreb/static/
+#infopogreb/static/
 static/ 
 # mkdocs documentation 
 /site 
