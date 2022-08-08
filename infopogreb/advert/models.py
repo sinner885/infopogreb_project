@@ -2,6 +2,12 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from django.utils.text import slugify
+from time import time
+
+def gen_slug(s):
+    new_slug = slugify(s, allow_unicode=True)
+    return new_slug + '-' + str(int(time()))
 
 class Category(models.Model):
     """Категории объявлений"""
@@ -44,12 +50,17 @@ class Advert(models.Model):
     telefon = models.CharField('номер телефона', blank=True, max_length=13)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
     moderation = models.BooleanField("Модерация", default=True)
-    slug = models.SlugField("url", max_length=200, unique=True)
+    slug = models.SlugField("url", max_length=200, unique=True, blank=True)
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
     location = models.CharField('Локація', max_length=20)
     
 
     
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.subject)
+        super().save(*args, **kwargs)
+            
 
     def __str__(self):
         return self.subject

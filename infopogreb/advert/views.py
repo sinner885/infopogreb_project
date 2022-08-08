@@ -83,8 +83,6 @@ def advert_new(request):
     if request.method == 'POST':
         form = AdvertForm(request.POST, request.FILES)
         if form.is_valid():
-            ad = form.save(commit=False)
-            ad.author = request.user
             form.save()
             return redirect('advert')
     else:
