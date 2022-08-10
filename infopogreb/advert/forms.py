@@ -32,7 +32,7 @@ class AdvertForm(forms.ModelForm):
     
     class Meta:
         model = Advert
-        fields = ('category', 'subject', 'slug', 'types_ad', 'types_pr', 'description', 'images', 'price', 'name', 'email', 'telefon', 'location', 'user')
+        fields = ('category', 'subject', 'types_ad', 'types_pr', 'description', 'images', 'price', 'name', 'email', 'telefon', 'location')
         widgets = {
             'category': forms.Select(attrs={'class': 'single-input'}),
             'subject': forms.TextInput(attrs={'class': 'single-input'}),
@@ -46,6 +46,7 @@ class AdvertForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'single-input'}),
             'telefon': forms.TextInput(attrs={'class': 'single-input'}),
             'location': forms.TextInput(attrs={'class': 'single-input'}),
+            
             
             
         }

@@ -43,7 +43,7 @@ class Advert(models.Model):
     types_pr = models.CharField(max_length=9, choices=TYPE_PRODUCT, blank=True, verbose_name='стан товару')
     subject = models.CharField("Назва", max_length=200)
     description = models.TextField("Опис об'яви", max_length=10000)
-    images = models.ImageField('Фото', upload_to='photos/%Y/%m/%d/', blank=True)
+    images = models.ImageField('Фото', upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, blank=True)
     price = models.DecimalField("ціна", max_digits=8, decimal_places=2,blank=True, null=True)
     name = models.CharField('Имя', max_length=50, help_text='Ваше имя')
     email = models.EmailField(blank=True, verbose_name='эл.почта')

@@ -25,7 +25,7 @@ def advert(request):
     categorys = Category.objects.all()
     adverts = Advert.objects.order_by('-created')
     contact_list = Advert.objects.order_by('-created')
-    paginator = Paginator(contact_list, 5) 
+    paginator = Paginator(contact_list, 8) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'advert/advert.html', {'page_obj': page_obj, 'categorys': categorys, 'adverts': adverts})
@@ -42,7 +42,7 @@ def get_category(request, category_id):
     categorys = Category.objects.all()
     category = Category.objects.get(pk=category_id)
     contact_list = Advert.objects.order_by('-created')
-    paginator = Paginator(contact_list, 5) 
+    paginator = Paginator(contact_list, 8) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'advert/category.html', {'adverts': adverts, 'categorys': categorys, 'category': category, 'page_obj':page_obj, 'contact_list': contact_list})
@@ -83,7 +83,9 @@ def advert_new(request):
     if request.method == 'POST':
         form = AdvertForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             return redirect('advert')
     else:
         form = AdvertForm()

@@ -20,11 +20,15 @@
                                 <div class="serch_cat d-flex justify-content-end">
                                     <select>
                                         <option data-display="Most Recent">Most Recent</option>
-                                        {% for category in categorys %}
-                                        <a href="/category/{{ category.pk }}">
-                                        {{ category.name }}
-                                        </a>
+                                        
+                                            {% for category in categorys %}
+                                            <option data-display="Most Recent">
+                                            <a href="/category/{{ category.pk }}">
+                                            {{ category.name }}
+                                            </a>
+                                            </option>
                                         {% endfor %}
+                                        
                                     </select>
                                 </div>
                             </div>

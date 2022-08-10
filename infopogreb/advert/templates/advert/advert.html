@@ -10,7 +10,7 @@
 <div class="job_listing_area plus_padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            {% comment %} <div class="col-lg-3">
                 <div class="job_filter white-bg">
                     <div class="form_inner white-bg">
                         <h3>Filter</h3>
@@ -87,7 +87,7 @@
                         <button  class="boxed-btn3 w-100" type="submit">Reset</button>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
             <div class="col-lg-9">
                 <div class="recent_joblist_wrap">
                     <div class="recent_joblist white-bg ">
@@ -112,45 +112,10 @@
                 <div class="job_lists m-0">
                     <div class="row">
                         
-
                         {% for advert in page_obj.object_list %}
 
-                        {% comment %} <div class="col-lg-12 col-md-12">
-                            <div class="single_jobs white-bg d-flex justify-content-between">
-                                <div class="jobs_left d-flex align-items-center">
-                                    
-
-                                    <div class="thumb">
-                                        {% if advert.category.icon %}
-                                        <img src="{{ advert.category.icon.url }}" alt="" >
-                                        {% endif %}
-                                    </div>
-                                    
-                                    <div class="jobs_conetent">
-                                        
-                                        <a href="{{ advert.get_absolute_url }}"><h4>{{ advert.subject }}</h4></a>
-                                        <div class="links_locat d-flex align-items-center">
-                                            <div class="location">
-                                                <p> <i class="fa fa-map-marker"></i> {{ advert.location }}</p>
-                                            </div>
-                                            <div class="location">
-                                                <p> <i class="fa fa-clock-o"></i> {{ advert.created|timesince }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="jobs_right">
-                                    <div class="apply_now">
-                                        <a href="/detail_advert/{{advert.slug}}" class="boxed-btn3">Детально</a>
-                                    </div>
-                                    <div class="date">
-                                        <p>Додано: {{ advert.created|date:'d.m.Y' }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> {% endcomment %}
                         {%  include 'advert/inc/advert_card_templates.html' %} 
+
                         {% endfor %}
                     </div>
                     <div class="row">
