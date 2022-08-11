@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib import messages
+from django.db.models import Count
 
 from django.contrib.auth import login, logout
 from django.core.paginator import Paginator
@@ -15,8 +16,9 @@ from .forms import *
 
 def home(request):
     categorys = Category.objects.all()
+    cats = Category.objects.annotate(Count ('advert'))
     adverts = Advert.objects.order_by('-created')[:5]
-    return render(request, 'advert/home.html', {'categorys': categorys, 'adverts': adverts}) 
+    return render(request, 'advert/home.html', {'categorys': categorys, 'adverts': adverts, 'cats': cats}) 
 
 
 
