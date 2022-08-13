@@ -2,7 +2,7 @@ import re
 from unicodedata import category
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib import messages
 from django.db.models import Count
@@ -24,13 +24,14 @@ def home(request):
 
 
 def advert(request):
-    categorys = Category.objects.all()
+    #categorys = Category.objects.all()
+    cats = Category.objects.annotate(Count ('advert'))
     adverts = Advert.objects.order_by('-created')
     contact_list = Advert.objects.order_by('-created')
     paginator = Paginator(contact_list, 8) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'advert/advert.html', {'page_obj': page_obj, 'categorys': categorys, 'adverts': adverts})
+    return render(request, 'advert/advert.html', {'page_obj': page_obj, 'cats': cats, 'adverts': adverts})
 
 
 def detail_advert(request, slug):
@@ -93,3 +94,27 @@ def advert_new(request):
         form = AdvertForm()
     
     return render(request, 'advert/advert_new.html', {'form': form})
+
+
+def advert_edit(request, slug):
+    post = Advert.objects.get(slug__iexact=slug)
+    if request.method == 'POST':
+        form = AdvertForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('detail_advert', slug=post.slug)
+    else:
+        form = AdvertForm(instance=post)
+    return render(request, 'advert/advert_update.html', {'form': form, 'post':post})
+
+
+def advert_delete(request, slug):
+    post = get_object_or_404(Advert, slug__iexact = slug)
+    if request.method == 'POST':
+        post.delete()
+        return redirect(reverse('advert'))
+    else:
+        post = get_object_or_404(Advert, slug__iexact = slug)
+    return render(request, 'advert/advert_delete.html', {'post': post})
