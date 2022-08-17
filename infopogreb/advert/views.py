@@ -41,7 +41,7 @@ def detail_advert(request, slug):
 
 
 def get_category(request, category_id):
-    adverts = Advert.objects.filter(category_id=category_id)
+    adverts = Advert.objects.filter(category_id=category_id).order_by('-created')
     categorys = Category.objects.all()
     category = Category.objects.get(pk=category_id)
     contact_list = Advert.objects.order_by('-created')
