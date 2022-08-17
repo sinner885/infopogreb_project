@@ -21,7 +21,7 @@
                 <div class="single_catagory">
                     
                     <a href="{% url 'category' cat.pk %}"><h4>{{ cat.name }}</h4></a>
-                    <p>добавлено <span>{{ cat.advert__count }}</span></p>
+                    <p><span>{{ cat.advert__count }}</span></p>
                 </div>
             </div>
             {% endfor %}

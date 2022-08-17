@@ -29,7 +29,8 @@
                                 </div>
                             </div>
                         </div>
-                        {% if request.user.is_authenticated %}
+                        
+                        {% if request.user == detail.user %}
                         <div class="jobs_right">
                             <div class="apply_now">
                                 <a class="heart_mark" href="{% url 'advert_edit' slug=detail.slug %}"> <img src="{% static 'img/icons8.png' %}" width=18 alt="редагувати"> 
@@ -38,8 +39,8 @@
                                 </a>
                             </div>
                         </div>
-                        
                         {% endif %}
+                        
                     </div>
                 </div>
                 <div class="descript_wrap white-bg">
