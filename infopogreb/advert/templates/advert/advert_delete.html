@@ -8,12 +8,14 @@
 
 <section class="sample-text-area">
     <div class="container box_1170">
+        <div class="col-lg-8">
 
-        <form action="{% url 'advert_delete' slug=post.slug %}" method="post">
-            {% csrf_token %}
-        <a href="{% url "detail_advert" slug=post.slug %}" class="boxed-btn3"> Назад </a>
-        <button type="submit" name="button" class="boxed-btn2">Видалити</button>
-
+            <form action="{% url 'advert_delete' slug=post.slug %}" method="post">
+                {% csrf_token %}
+            <a href="{% url "detail_advert" slug=post.slug %}" class="boxed-btn3"> Назад </a>
+            <button type="submit" name="button" class="boxed-btn2">Видалити</button>
+        
+        </div>
 
     </div>
 </section>
