@@ -34,6 +34,10 @@ def advert(request):
     return render(request, 'advert/advert.html', {'page_obj': page_obj, 'cats': cats, 'adverts': adverts})
 
 
+def about(request):
+    return render(request, 'advert/about.html')
+
+
 def detail_advert(request, slug):
     detail = get_object_or_404(Advert, slug__iexact = slug)
     

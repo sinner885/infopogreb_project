@@ -10,6 +10,7 @@ urlpatterns = [
     path('detail_advert/<str:slug>/update/', views.advert_edit, name='advert_edit'),
     path('detail_advert/<str:slug>/delete/', views.advert_delete, name='advert_delete'),
     path('category/<int:category_id>',views.get_category, name='category'),
+    path('about/', views.about, name='about'),
     path('feed/', LatestAdvertFeed(), name='advert_feed'),
     
 ]
