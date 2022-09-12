@@ -58,9 +58,9 @@
                                         <ul id="navigation">
                                             <li><a href="{% url 'home' %}">Головна</a></li>
                                             <li><a href="{% url 'advert' %}">Об'яви</a></li>
-                                            <li><a href="#">Послуги</a></li>
+                                            <li><a href="{% url 'service' %}">Послуги</a></li>
                                             <li><a href="#">Оголошення</a></li>
-                                        <!--    <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                            {% comment %} <li><a  href="#">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="candidate.html">Candidates </a></li>
                                                     <li><a href="job_details.html">job details </a></li>
@@ -72,8 +72,18 @@
                                                     <li><a href="blog.html">blog</a></li>
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
-                                            </li>-->
+                                            </li> {% endcomment %}
                                             <li><a href="{% url 'about' %}">Про сайт</a></li>
+                                            {% if request.user.is_authenticated %}
+                                            <li>
+                                                <a  href="#">Додати <i class="ti-angle-down"></i></a>
+                                                    <ul class="submenu">
+                                                        <li><a href="{% url 'advert_new' %}">Об'яву </a></li>
+                                                        <li><a href="job_details.html">Послугу </a></li>
+                                                        <li><a href="elements.html">Оголошення</a></li>
+                                                    </ul>
+                                            </li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>
@@ -91,8 +101,8 @@
                                     </div>
                                         {% if request.user.is_authenticated %}
                                         <div class="d-none d-lg-block">
-                                            <a class="boxed-btn3" href="{% url 'advert_new' %}">Об'явити</a>
-                                         </div>
+                                                <a class="boxed-btn3" href="#">Об'явити</a>
+                                        </div>
                                         {% endif %}
                                 </div>
                             </div>
@@ -129,7 +139,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
+                        {% block name %}
                         <h3>INFOпогреб</h3>
+                        {% endblock %}
                     </div>
                 </div>
             </div>
@@ -193,15 +205,14 @@
                                 Company
                             </h3>
                             <ul>
-                                <li><a href="#">About </a></li>
-                                <li><a href="#"> Pricing</a></li>
-                                <li><a href="#">Carrier Tips</a></li>
+                                <li><a href="{% url 'home' %}">Головна</a></li>
+                                <li><a href="{% url 'about' %}">Про сайт</a></li>
                                 <li><a href="#">FAQ</a></li>
                             </ul>
 
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
+                    {% comment %} <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
                             <h3 class="footer_title">
                                 Category
@@ -225,7 +236,7 @@
                             </form>
                             <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
                                 luckily.</p>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="footer_widget wow fadeInUp">
                             <a class="boxed-btn2" href="{% url 'advert_feed' %}">RSS</a>
                         </div>

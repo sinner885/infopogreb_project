@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section_title mb-40">
-                    <h3>Категорії</h3>
+                    <h3>Категорії об'яв</h3>
                 </div>
             </div>
         </div>
@@ -23,7 +23,11 @@
             {% for cat in cats %}
             <div class="col-lg-4 col-xl-3 col-md-6">
                 <div class="single_catagory">
-                    
+                    <div class="thumb">
+                        {% if cat.icon %}
+                            <img src="{{ cat.icon.url }}" alt="" >
+                        {% endif %}
+                    </div>
                     <a href="{% url 'category' cat.pk %}"><h4>{{ cat.name }}</h4></a>
                     <p><span>{{ cat.advert__count }}</span></p>
                 </div>
@@ -39,7 +43,7 @@
 <!-- job_listing_area_start  -->
 <div class="job_listing_area">
     <div class="container">
-        <div class="row align-items-center">
+        {% comment %} <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="section_title">
                     <h3>Останні об'яви</h3>
@@ -50,7 +54,18 @@
                     <a href="{% url 'advert' %}" class="boxed-btn4">Всі об'яви</a>
                 </div>
             </div>
+        </div> {% endcomment %}
+
+        <div class="col-lg-12">
+            <div class="section_title text-center mb-40">
+                <h3>Останні об'яви</h3>
+                <div class="brouse_job text-right">
+                    <a href="{% url 'advert' %}" class="boxed-btn4">Всі об'яви</a>
+                </div>
+            </div>
+            
         </div>
+
         <div class="job_lists">
             <div class="row">
 
@@ -65,4 +80,67 @@
     </div>
 </div>                
 <!-- job_listing_area_finish -->
+
+<div class="top_companies_area">
+    <div class="container">
+        <div class="row align-items-center mb-40">
+            <div class="col-lg-6 col-md-6">
+                <div class="section_title">
+                    <h3>Категорії послуг</h3>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+
+            {% for cat_serv in cats_serv %}
+            <div class="col-lg-4 col-xl-3 col-md-6">
+                <div class="single_company">
+                    <div class="thumb">
+                        {% if cat_serv.icon %}
+                            <img src="{{ cat_serv.icon.url }}" alt="" >
+                        {% endif %}
+                    </div>
+                    <a href="#"><h3>{{ cat_serv.name }}</h3></a>
+                    <p> <span>{{cat_serv.service__count}}</span> Доступні послуги</p>
+                </div>
+            </div>
+            {% endfor %}
+
+           
+        </div>
+    </div>
+</div>
+
+
+<div class="featured_candidates_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_title text-center mb-40">
+                    <h3>Популярні послуги</h3>
+                    <div class="brouse_job text-right">
+                        <a href="{% url 'service' %}" class="boxed-btn4">Більше послуг</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="candidate_active owl-carousel">
+                    {% for service in services %}
+                    <div class="single_candidates text-center">
+                        <div class="thumb">
+                            <img src="img/candiateds/1.png" alt="">
+                        </div>
+                        <a href="#"><h4>{{ service.subject }}</h4></a>
+                        <p>Software Engineer</p>
+                    </div>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -5,6 +5,10 @@
     Об'яви | {{ block.super }}
 {% endblock %}
 
+{% block name %}
+{{ block.super }}  <p>Об'яви</p>
+{% endblock %}
+
 {% block content %}
 
 <div class="job_listing_area plus_padding">
@@ -113,16 +117,15 @@
                             <div class="col-md-6">
                                 <h4>Список об'яв</h4>
                             </div>
-                            {% comment %} <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="serch_cat d-flex justify-content-end">
-                                    <select>
-                                        <option data-display="Most Recent">Most Recent</option>
-                                        <option value="1">Marketer</option>
-                                        <option value="2">Wordpress </option>
-                                        <option value="4">Designer</option>
-                                    </select>
+                                    {% if request.user.is_authenticated %}
+                                        <div class="d-none d-lg-block">
+                                                <a class="genric-btn info-border circle arrow" href="{% url 'advert_new' %}">Об'явити</a>
+                                        </div>
+                                    {% endif %}
                                 </div>
-                            </div> {% endcomment %}
+                            </div> 
                         </div>
                     </div>
                 </div>

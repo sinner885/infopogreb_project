@@ -4,6 +4,10 @@
     Категорії | {{ block.super }}
 {% endblock %}
 
+{% block name %}
+{{ block.super }}  <p>Категорії</p>
+{% endblock %}
+
 {% block content %}
 
 <div class="job_listing_area plus_padding">

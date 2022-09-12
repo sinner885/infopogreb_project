@@ -10,15 +10,21 @@ from django.db.models import Count
 from django.contrib.auth import login, logout
 from django.core.paginator import Paginator
 
+
+
 from .models import *
 from .forms import *
 
+from service.models import CategoryService, Service
 
 def home(request):
     categorys = Category.objects.all()
     cats = Category.objects.annotate(Count ('advert'))
     adverts = Advert.objects.order_by('-created')[:5]
-    return render(request, 'advert/home.html', {'categorys': categorys, 'adverts': adverts, 'cats': cats}) 
+    categorys_serv = CategoryService.objects.all()
+    cats_serv =  CategoryService.objects.annotate(Count ('service'))
+    services = Service.objects.order_by()
+    return render(request, 'advert/home.html', {'categorys': categorys, 'adverts': adverts, 'cats': cats, 'categorys_serv': categorys_serv, 'cats_serv': cats_serv, 'services': services}) 
 
 
 
