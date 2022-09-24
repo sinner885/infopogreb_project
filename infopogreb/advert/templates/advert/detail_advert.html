@@ -51,12 +51,12 @@
                     {% if detail.images %}
                     <div class="single_wrap">
                         <h4>Фото:</h4>    
-                        <img src="{{ detail.images.url }}" alt="" width=650>
+                        <img class="card-img rounded-0" src="{{ detail.images.url }}" alt="" width=650>
                     </div>
                     {% else %}
                     <div class="single_wrap">
                         <h4>Фото відсутнє:</h4>    
-                        <img src="{% static 'img/photo_background.jpg' %}" alt="" width=650>
+                        <img class="card-img rounded-0" src="{% static 'img/photo_background.jpg' %}" alt="" width=650>
                     </div>
                     {% endif %}
                     {% if detail.price %}

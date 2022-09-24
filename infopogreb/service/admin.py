@@ -13,6 +13,7 @@ class ServiceAdmin(admin.ModelAdmin):
     """Послуги"""
     list_display = (
         "id",
+        "brend",
         "subject",
         "user",
         "category",
