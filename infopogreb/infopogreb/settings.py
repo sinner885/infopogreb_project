@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3lcb-*x&x(vukb7o&z)u9rq+yibd6f@ur)--o*cjp02%b0=3v6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['infopogreb.pythonanywhere.com']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'advert.apps.AdvertConfig',
     'service.apps.ServiceConfig',
 ]
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'infopogreb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'infopogreb$default',
+        'USER': 'infopogreb',
+        'PASSWORD': '5417KAMA',
+        'HOST': 'infopogreb.mysql.pythonanywhere-services.com',
+
     }
 }
 
@@ -134,3 +138,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from .local_settings import *
+except ImportError:
+    print('Looks no local file. You must be on prodaction')

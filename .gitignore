@@ -5,7 +5,9 @@
 __pycache__
 db.sqlite3
 media
-infopogreb/infopogreb/settings.py
+local_settings.py
+w_settings.py
+
 # Backup files # 
 *.bak 
 
