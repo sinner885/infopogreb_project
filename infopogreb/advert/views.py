@@ -109,7 +109,7 @@ def advert_new(request):
 def advert_edit(request, slug):
     post = Advert.objects.get(slug__iexact=slug)
     if request.method == 'POST':
-        form = AdvertForm(request.POST, instance=post)
+        form = AdvertForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user

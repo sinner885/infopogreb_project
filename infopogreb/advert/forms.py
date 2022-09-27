@@ -46,10 +46,11 @@ class AdvertForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'single-input'}),
             'telefon': forms.TextInput(attrs={'class': 'single-input'}),
             'location': forms.TextInput(attrs={'class': 'single-input'}),
-            
-            
-            
+                
         }
+        
+        
+        
     
     
         

@@ -5,7 +5,7 @@ from .models import Category, Advert
 class CategoryAdmin(admin.ModelAdmin):
     """Категории"""
     list_display = ("name", "id", 'icon')
-    prepopulated_fields = {"slug": ("name",)}
+    #prepopulated_fields = {"slug": ("name",)}
     
 
 
@@ -21,6 +21,7 @@ class AdvertAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "subject",
+        'slug',
         "user",
         "category",
         'types_ad',
@@ -35,5 +36,5 @@ class AdvertAdmin(admin.ModelAdmin):
     )
     list_display_links = ("subject",)
     
-    prepopulated_fields = {"slug": ("user", "subject")}
+    #prepopulated_fields = {"slug": ("user", "subject")}
     search_fields = ("user", "category", "subject", "date", "created")

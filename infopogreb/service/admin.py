@@ -5,7 +5,7 @@ from .models import CategoryService, Service
 class CategoryServiceAdmin(admin.ModelAdmin):
     """Категории услуг"""
     list_display = ("name", "id", 'icon')
-    prepopulated_fields = {"slug": ("name",)}
+    #prepopulated_fields = {"slug": ("name",)}
     
     
 @admin.register(Service)
@@ -15,6 +15,7 @@ class ServiceAdmin(admin.ModelAdmin):
         "id",
         "brend",
         "subject",
+        "slug",
         "user",
         "category",
         'name',
@@ -27,4 +28,4 @@ class ServiceAdmin(admin.ModelAdmin):
     )
     list_display_links = ("subject",)
     
-    prepopulated_fields = {"slug": ("user", "subject")}
+    #prepopulated_fields = {"slug": ("user", "subject")}
