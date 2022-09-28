@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 from autoslug import AutoSlugField 
 from uuslug import uuslug
 
-from django.utils.text import slugify
-from time import time
+
 
 # def gen_slug(s):
 #     new_slug = slugify(s, allow_unicode=True)
@@ -21,7 +20,6 @@ def slugify_value(value):
 class Category(models.Model):
     """Категории объявлений"""
     name = models.CharField("Имя", max_length=50, unique=True)
-    #slug = models.SlugField("url", max_length=50, unique=True)
     slug = AutoSlugField('URL', max_length=100, db_index=True, unique=True, populate_from=instance_slug, slugify=slugify_value)
     icon = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     
@@ -52,22 +50,21 @@ class Advert(models.Model):
         ('аренда', 'аренда')
     )
     
-    category = models.ForeignKey(Category, verbose_name="Категорія", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, verbose_name="Категорія*", on_delete=models.CASCADE)
     types_ad = models.CharField(max_length=9, choices=TYPE_AD, blank=True, verbose_name="тип об'яви")
     types_pr = models.CharField(max_length=9, choices=TYPE_PRODUCT, blank=True, verbose_name='стан товару')
-    subject = models.CharField("Назва", max_length=200)
-    description = models.TextField("Опис об'яви", max_length=10000)
+    subject = models.CharField("Назва*", max_length=200)
+    description = models.TextField("Опис об'яви*", max_length=10000)
     images = models.ImageField('Фото', upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, blank=True)
     price = models.IntegerField("ціна", default=0, blank=True, null=True)
-    name = models.CharField("Ваше ім'я", max_length=50)
+    name = models.CharField("Ваше ім'я*", max_length=50)
     email = models.EmailField(blank=True, verbose_name='эл.почта')
     telefon = models.CharField('номер телефона', blank=True, max_length=13)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
     moderation = models.BooleanField("Модерация", default=True)
-    #slug = models.SlugField("url", max_length=200, unique=True, blank=True)
     slug = AutoSlugField('URL', max_length=100, db_index=True, unique=True, populate_from=instance_slug, slugify=slugify_value)
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
-    location = models.CharField('Локація', max_length=20)
+    location = models.CharField('Локація', max_length=50, blank=True)
     
 
     

@@ -16,7 +16,7 @@
     <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
 
                         {% for service in page_obj.object_list %}
@@ -43,8 +43,8 @@
                                 </a>
                                 <p>{{ service.description }}</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> {{ service.brend }}</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li><i class="fa fa-user"></i> {{ service.brend }}</li>
+                                    <li><i class="fa fa-comments"></i> {{ service.created }}</li>
                                 </ul>
                             </div>
                         </article>
@@ -124,7 +124,7 @@
                             <ul class="list cat-list">
                                 {% for cat in cats %}
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="{% url 'category_service' cat.pk %}" class="d-flex">
                                         <p>{{ cat.name }}</p>
                                         <p>({{cat.service__count}})</p>
                                     </a>

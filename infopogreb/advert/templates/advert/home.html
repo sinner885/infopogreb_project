@@ -28,7 +28,7 @@
                             <img src="{{ cat.icon.url }}" alt="" >
                         {% endif %}
                     </div>
-                    <a href="{% url 'category' cat.pk %}"><h4>{{ cat.name }}</h4></a>
+                    <a  href="{% url 'category' cat.pk %}"><h4>{{ cat.name }}</h4></a>
                     <p><span>{{ cat.advert__count }}</span></p>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                             <img src="{{ cat_serv.icon.url }}" alt="" >
                         {% endif %}
                     </div>
-                    <a href="#"><h3>{{ cat_serv.name }}</h3></a>
+                    <a href="{% url 'category_service' cat_serv.pk %}"><h3>{{ cat_serv.name }}</h3></a>
                     <p> <span>{{cat_serv.service__count}}</span> Доступні послуги</p>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                             {% endif %}
                         </div>
                         <a href="{{ service.get_absolute_url }}"><h4>{{ service.subject }}</h4></a>
-                        <p>Software Engineer</p>
+                        <p>{{ service.category }}</p>
                     </div>
                     {% endfor %} 
                 </div>

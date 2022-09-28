@@ -6,7 +6,7 @@ class ServiceForm(forms.ModelForm):
     
     class Meta:
         model = Service
-        fields = ('category', 'brend', 'subject' 'description', 'images', 'name', 'telefon', 'email', 'location', 'moderation', 'slug', 'user', 'created', 'views')
+        fields = ('category', 'brend', 'subject', 'description', 'images', 'name', 'telefon', 'email', 'location')
         widgets = {
             'category': forms.Select(attrs={'class': 'single-input'}),
             'brend': forms.TextInput(attrs={'class': 'single-input'}),

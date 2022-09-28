@@ -1,34 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+    Розміщення  | {{ block.super }}
+{% endblock %}
+
 {% block content %}
 
 <section class="sample-text-area">
     <div class="container box_1170">
         <div class="col-lg-8">
-                {% if messages %}
-
-                <ul class="messages">
-
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-
-                </ul>
-
-                {% endif %}
             
-                <h3 class="text-heading">Вхід</h3>
+            <h3 class="text-heading">Додати послугу</h3>
             
-            <form method="post">
+            <form method="post", enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="d-none d-block">
                 <button class="boxed-btn3" type="submit">Вперед</button>
                 </div>
-            </form>
+            </form> 
         </div> 
     </div>
 </section>
 
 {% endblock %}
+                
