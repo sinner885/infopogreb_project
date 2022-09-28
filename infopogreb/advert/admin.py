@@ -5,7 +5,7 @@ from .models import Category, Advert
 class CategoryAdmin(admin.ModelAdmin):
     """Категории"""
     list_display = ("name", "id", 'icon')
-    #prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {"slug": ("name",)}
     
 
 

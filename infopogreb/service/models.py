@@ -19,15 +19,15 @@ def slugify_value(value):
 class CategoryService(models.Model):
     """Категории услуг"""
     name = models.CharField("Имя", max_length=50, unique=True)
-    slug = AutoSlugField('URL', max_length=100, db_index=True, unique=True, populate_from=instance_slug, slugify=slugify_value)
+    slug = models.SlugField('URL', max_length=100, db_index=True, unique=True, )
     icon = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     
     def __str__(self):
          return self.name
      
-    def save(self, *args, **kwargs):
-        self.slug = uuslug(self.slug, instance=self)
-        super(Service, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.slug = uuslug(self.slug, instance=self)
+    #     super(CategoryService, self).save(*args, **kwargs)
      
     class Meta:
          verbose_name = "Категория услуг"

@@ -5,7 +5,7 @@ from .models import CategoryService, Service
 class CategoryServiceAdmin(admin.ModelAdmin):
     """Категории услуг"""
     list_display = ("name", "id", 'icon')
-    #prepopulated_fields = {"slug": ("name",)}
+    prepopulated_fields = {"slug": ("name",)}
     
     
 @admin.register(Service)
