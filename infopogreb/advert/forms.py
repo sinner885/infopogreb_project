@@ -32,7 +32,7 @@ class AdvertForm(forms.ModelForm):
     
     class Meta:
         model = Advert
-        fields = ('category', 'subject', 'types_ad', 'types_pr', 'description', 'images', 'price', 'name', 'email', 'telefon', 'location')
+        fields = ('category', 'subject', 'types_ad', 'types_pr', 'description', 'images', 'name', 'email', 'telefon', 'location')
         widgets = {
             'category': forms.Select(attrs={'class': 'single-input'}),
             'subject': forms.TextInput(attrs={'class': 'single-input'}),
@@ -42,10 +42,10 @@ class AdvertForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'single-input', 'rows':6}),
             'images': forms.ClearableFileInput(attrs={'class': 'single-input'}),
             'price': forms.NumberInput(attrs={'class': 'single-input'}),
-            'name': forms.TextInput(attrs={'class': 'single-input'}),
+            'name': forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'Інокентій Абрамович'}),
             'email': forms.EmailInput(attrs={'class': 'single-input'}),
-            'telefon': forms.TextInput(attrs={'class': 'single-input'}),
-            'location': forms.TextInput(attrs={'class': 'single-input'}),
+            'telefon': forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'xxx xxx xx xx'}),
+            'location': forms.TextInput(attrs={'class': 'single-input', 'placeholder': 'район міста, місто, село'}),
                 
         }
         

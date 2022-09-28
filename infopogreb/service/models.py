@@ -38,7 +38,7 @@ class CategoryService(models.Model):
 class Service(models.Model):
     """Послуги"""
     category = models.ForeignKey(CategoryService, verbose_name="Категорія*", on_delete=models.CASCADE)
-    brend = models.CharField("Назва бренду", max_length=50, blank=True)
+    brend = models.CharField("Бренд", max_length=50, blank=True)
     subject = models.CharField("Назва послуги*", max_length=200)
     description = models.TextField("Опис посуги*", max_length=10000)
     images = models.ImageField('Фото', upload_to='photos/%Y/%m/%d/', height_field=None, width_field=None, blank=True)
