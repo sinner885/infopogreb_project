@@ -22,6 +22,7 @@ def detail_service(request, slug):
 
 
 def get_category_service(request, category_id):
+    cats = CategoryService.objects.annotate(Count ('service'))
     services = Service.objects.filter(category_id=category_id).order_by('-created')
     categorys = CategoryService.objects.all()
     category = CategoryService.objects.get(pk=category_id)
@@ -29,7 +30,7 @@ def get_category_service(request, category_id):
     paginator = Paginator(contact_list, 8) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'service/category_service.html', {'services': services, 'categorys': categorys, 'category': category, 'page_obj':page_obj, 'contact_list': contact_list})
+    return render(request, 'service/category_service.html', {'services': services, 'categorys': categorys, 'category': category, 'page_obj':page_obj, 'contact_list': contact_list, 'cats': cats})
 
 
 def service_new(request):
