@@ -63,7 +63,7 @@
                                 <a class="d-inline-block" href="{{ service.get_absolute_url }}">
                                     <h2>{{ service.subject }}</h2>
                                 </a>
-                                <p>{{ service.description }}</p>
+                                <p>{{ service.description|safe }}</p>
                                 <ul class="blog-info-link">
                                     <li><i class="fa fa-user"></i> {{ service.brend }}</li>
                                     <li><i class="fa fa-comments"></i> {{ service.created }}</li>
