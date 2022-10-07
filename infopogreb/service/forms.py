@@ -1,6 +1,6 @@
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from .models import Service
+from .models import Service, Coment
 
 class ServiceForm(forms.ModelForm):
     
@@ -25,4 +25,17 @@ class ServiceForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'single-input'}),
             'location': forms.TextInput(attrs={'class': 'single-input'}),
             
+        }
+        
+        
+class ComentForm(forms.ModelForm):
+    class Meta:
+        model = Coment
+        
+        fields = ('coment',)
+        widgets = {
+            'coment': forms.Textarea(attrs={'class': 'single-textarea', 'rows':6, 'placeholder': 'Поділіться своїм враженням від наданої послуги.'}),
+        }
+        labels = {
+            'coment': '',
         }

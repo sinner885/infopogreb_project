@@ -34,9 +34,7 @@
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+    
 
     <!-- header-start -->
     <header>
@@ -67,12 +65,7 @@
                                                     <li><a href="elements.html">elements</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li> {% endcomment %}
+                                             {% endcomment %}
                                             <li><a href="{% url 'about' %}">Про сайт</a></li>
                                             {% if request.user.is_authenticated %}
                                             <li>
@@ -101,7 +94,7 @@
                                     </div>
                                         {% if request.user.is_authenticated %}
                                         <div class="d-none d-lg-block">
-                                                <a class="boxed-btn3" href="#">Оголошення</a>
+                                                <a class="boxed-btn3" href="#">+ Оголошення</a>
                                         </div>
                                         {% endif %}
                                 </div>
@@ -119,7 +112,7 @@
                                     </div>
                                         {% if request.user.is_authenticated %}
                                         <div class="d-block">
-                                            <a class="genric-btn primary small" href="#">Оголошення</a>
+                                            <a class="genric-btn primary small" href="#">+ Оголошення</a>
                                          </div>
                                         {% endif %}
                                 </div>

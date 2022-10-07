@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from .models import CategoryService, Service
-from .forms import ServiceForm
+from .models import CategoryService, Service, Coment
+from .forms import ServiceForm, ComentForm
 from django.core.paginator import Paginator
 from django.db.models import Count
 
@@ -17,8 +17,21 @@ def service(request):
 
 
 def detail_service(request, slug):
-    detail = get_object_or_404(Service, slug__iexact = slug)
-    return render(request, 'service/detail_service.html',{'detail': detail})
+    detail = get_object_or_404(Service,slug=slug)
+    #coment = Coment.objects.filter(serv=pk, moderation=True)
+    coment = detail.coment_service.filter(moderation=True)
+    if request.method == "POST":
+        form = ComentForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.serv = detail
+            form.detail = detail
+            form.save()
+            return redirect(detail_service, slug)
+    else:
+        form = ComentForm()
+    return render(request, 'service/detail_service.html',{'detail': detail, 'coments': coment, 'form': form})
 
 
 def get_category_service(request, category_id):

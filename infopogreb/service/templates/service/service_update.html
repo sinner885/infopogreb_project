@@ -14,6 +14,7 @@
             
             <form action="{% url 'service_edit' slug=post.slug %}" method="post", enctype="multipart/form-data">
                 {% csrf_token %}
+                {{ form.media }}
                 {{ form.as_p }}
                 <div class="d-none d-lg-block">
                 <button class="boxed-btn3" type="submit">Вперед</button>

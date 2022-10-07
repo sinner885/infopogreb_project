@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import CategoryService, Service
+from .models import CategoryService, Service, Coment
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 @admin.register(CategoryService)
@@ -38,3 +38,8 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display_links = ("subject",)
     
     #prepopulated_fields = {"slug": ("user", "subject")}
+    
+@admin.register(Coment)
+class ComentAdmin(admin.ModelAdmin):
+    '''Коментарии'''
+    list_display = ('coment', 'serv', 'created', 'moderation', 'user')

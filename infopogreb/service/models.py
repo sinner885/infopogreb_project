@@ -71,3 +71,20 @@ class Service(models.Model):
     class Meta:
         verbose_name = "Послуга"
         verbose_name_plural = "Послуги"
+        
+
+class Coment(models.Model):
+    '''Коментарии'''
+    serv = models.ForeignKey(Service, related_name='coment_service', on_delete=models.CASCADE)
+    coment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
+    moderation = models.BooleanField("Модерация", default=True)
+    
+    class Meta:
+        verbose_name = 'Коммент'
+        verbose_name_plural = 'Комменты'
+    
+    
+    def __str__(self):
+        return "{}".format(self.user)

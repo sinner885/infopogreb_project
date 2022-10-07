@@ -60,7 +60,8 @@
                             </div>
                             {% endif %}
                             <div class="blog_details">
-                                <a class="d-inline-block" href="{{ service.get_absolute_url }}">
+                                 <a class="d-inline-block" href="{{ service.get_absolute_url }}"> 
+                                    {% comment %}<a class="d-inline-block" href="{% url 'detail_service' pk=service.id%}">{% endcomment %}
                                     <h2>{{ service.subject }}</h2>
                                 </a>
                                 <p>{{ service.description|safe }}</p>
