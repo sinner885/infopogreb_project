@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Видалення | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<section class="sample-text-area">
+    <div class="container box_1170">
+        <div class="col-lg-8">
+
+            <form action="{% url 'adv_delete' pk=post.pk %}" method="post">
+                {% csrf_token %}
+            <a href="{% url "detail_adv" pk=post.pk %}" class="boxed-btn3"> Назад </a>
+            <button type="submit" name="button" class="boxed-btn2">Видалити</button>
+        
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

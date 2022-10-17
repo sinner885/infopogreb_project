@@ -16,6 +16,7 @@ from .models import *
 from .forms import *
 
 from service.models import CategoryService, Service
+from adv.models import Adv
 
 def home(request):
     categorys = Category.objects.all()
@@ -24,7 +25,14 @@ def home(request):
     categorys_serv = CategoryService.objects.all()
     cats_serv =  CategoryService.objects.annotate(Count ('service'))
     services = Service.objects.order_by()
-    return render(request, 'advert/home.html', {'categorys': categorys, 'adverts': adverts, 'cats': cats, 'categorys_serv': categorys_serv, 'cats_serv': cats_serv, 'services': services}) 
+    advs = Adv.objects.order_by('-created')[:8]
+    return render(request, 'advert/home.html', {'advs': advs,
+                                                'categorys': categorys,
+                                                'adverts': adverts,
+                                                'cats': cats,
+                                                'categorys_serv': categorys_serv,
+                                                'cats_serv': cats_serv,
+                                                'services': services}) 
 
 
 

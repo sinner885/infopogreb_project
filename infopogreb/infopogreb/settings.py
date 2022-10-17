@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'advert.apps.AdvertConfig',
     'service.apps.ServiceConfig',
+    'adv',
     'django_cleanup.apps.CleanupConfig',
     'ckeditor',
     'ckeditor_uploader',

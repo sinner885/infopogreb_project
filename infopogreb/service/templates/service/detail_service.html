@@ -13,17 +13,17 @@
            
              <div class="single-post">
                 <div class="feature-img">
-                  {% if detail.images %}
-                  <div class="blog_item_img">
-                      <img class="card-img rounded-0" src="{{ detail.images.url }}" alt="">
-                      
-                  </div>
-                  {% else %}
-                  <div class="blog_item_img">
-                      <img class="card-img rounded-0" src="{% static 'img/photo_background.jpg' %}" alt="">
-                      
-                  </div>
-                  {% endif %}
+                     {% if detail.images %}
+                     <div class="blog_item_img">
+                        <img class="card-img rounded-0" src="{{ detail.images.url }}" alt="">
+                        
+                     </div>
+                     {% else %}
+                     <div class="blog_item_img">
+                        <img class="card-img rounded-0" src="{% static 'img/photo_background.jpg' %}" alt="">
+                        
+                     </div>
+                     {% endif %}
                 </div>
                 <div class="blog_details">
                    <h2>{{ detail.subject }}</h2>
@@ -70,6 +70,7 @@
                       
                    </ul>
                 </div>
+               </div>
                 {% comment %}<div class="navigation-area">
                    <div class="row">
                       <div
@@ -143,9 +144,9 @@
                                     </h5>
                                     <p class="date">{{ coment.created }}</p>
                                  </div>
-                                 <div class="reply-btn">
+                                 {% comment %} <div class="reply-btn">
                                     <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
+                                 </div> {% endcomment %}
                               </div>
                            </div>
                         </div>

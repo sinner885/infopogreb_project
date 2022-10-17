@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Оголошення | {{ block.super }}
+{% endblock %}
+
+{% block name %}
+{{ block.super }}  <p>Оголошення</p>
+{% endblock %}
+
+{% block content %}
+
+
+  
+  
+
+
+<div class="job_listing_area plus_padding">
+    <div class="container">
+        <div class="row">   
+            <div class="col-lg-12">
+                <div class="recent_joblist_wrap">
+                    <div class="recent_joblist white-bg ">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h4>Список оголошень</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="serch_cat d-flex justify-content-end">
+                                    {% if request.user.is_authenticated %}
+                                        <div class="d-none d-lg-block">
+                                                <a class="genric-btn info-border circle arrow" href="{% url 'adv_new' %}">Додати</a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job_lists m-0">
+                    <div class="row">
+                        
+                        {% for adv in advs %}
+
+                
+                        <div class="col-lg-12 col-md-12">
+                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                <div class="jobs_left d-flex align-items-center">
+                                    <div class="jobs_conetent">
+                                        <a class="d-inline-block" href="{{ adv.get_absolute_url }}"> 
+                                        <h4>{{ adv.name }}</h4>
+                                        </a>
+                                        <p class="generic-blockquote">{{ adv.description }}</p>
+                                        
+                                        <div class="links_locat d-flex align-items-center">
+                                            <div class="location">
+                                                <p> <i class="fa fa-clock-o"></i> {{ adv.created|timesince }} тому</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %} 
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pagination_wrap">
+                                
+                                 <ul>
+                                    {% if page_obj.has_previous %}
+
+                                     <li><a href="?page=1"> <i class="ti-angle-left"></i> </a></li> 
+                                     <li>
+                                        <a href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-left"></i></a>
+                                     </li>
+
+                                     {% endif %}
+                                    {% for p in page_obj.paginator.page_range %}
+
+                                    <li>
+                                        <a href="?page={{ p }}"><span>{{ p }}</span></a>
+                                    </li>
+                                    
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                    <li>
+                                        <a href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-right"></i></a>
+                                    </li>
+                                    <li><a href="?page={{ page_obj.paginator.num_pages }}"> <i class="ti-angle-right"></i> </a></li>
+                                    
+
+                                    {% endif %}
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

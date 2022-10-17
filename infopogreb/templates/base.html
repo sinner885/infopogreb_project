@@ -17,6 +17,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
     <!-- Place favicon.ico in the root directory -->
 
+    <!-- Bootstrap CSS -->
+
+    
     <!-- CSS here -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -57,7 +60,7 @@
                                             <li><a href="{% url 'home' %}">Головна</a></li>
                                             <li><a href="{% url 'advert' %}">Об'яви</a></li>
                                             <li><a href="{% url 'service' %}">Послуги</a></li>
-                                            <li><a href="#">Оголошення</a></li>
+                                            <li><a href="{% url 'adv' %}">Оголошення</a></li>
                                             {% comment %} <li><a  href="#">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="candidate.html">Candidates </a></li>
@@ -73,7 +76,7 @@
                                                     <ul class="submenu">
                                                         <li><a href="{% url 'advert_new' %}">Об'яву </a></li>
                                                         <li><a href="{% url 'service_new' %}">Послугу </a></li>
-                                                        <li><a href="#">Оголошення</a></li>
+                                                        <li><a href="{% url 'adv_new' %}">Оголошення</a></li>
                                                     </ul>
                                             </li>
                                             {% endif %}
@@ -94,7 +97,7 @@
                                     </div>
                                         {% if request.user.is_authenticated %}
                                         <div class="d-none d-lg-block">
-                                                <a class="boxed-btn3" href="#">+ Оголошення</a>
+                                                <a class="boxed-btn3" href="{% url 'adv_new' %}">+ Оголошення</a>
                                         </div>
                                         {% endif %}
                                 </div>
@@ -112,7 +115,7 @@
                                     </div>
                                         {% if request.user.is_authenticated %}
                                         <div class="d-block">
-                                            <a class="genric-btn primary small" href="#">+ Оголошення</a>
+                                            <a class="genric-btn primary small" href="{% url 'adv_new' %}">+ Оголошення</a>
                                          </div>
                                         {% endif %}
                                 </div>
@@ -217,9 +220,9 @@
                                 <li><a href="#">Finance</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
+                        {% comment %} <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
                             <h3 class="footer_title">
                                 Subscribe
                             </h3>
@@ -229,7 +232,7 @@
                             </form>
                             <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
                                 luckily.</p>
-                        </div> {% endcomment %}
+                        </div>  {% endcomment %}
                         <div class="footer_widget wow fadeInUp">
                             <a class="boxed-btn2" href="{% url 'advert_feed' %}">RSS</a>
                         </div>
