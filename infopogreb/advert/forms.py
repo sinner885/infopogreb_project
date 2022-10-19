@@ -14,7 +14,7 @@ class LoginUserForm(AuthenticationForm):
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'single-input'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'single-input', 'placeholder': 'Email adress'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'single-input'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'single-input', 'placeholder': 'не меньше 8-ми символів'}))
     password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'single-input'}))
 
     class Meta:
