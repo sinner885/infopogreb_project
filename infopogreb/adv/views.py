@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Adv
-from .forms import AdvForm
+from .forms import AdvForm, AdvComentForm
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy, reverse
 
@@ -29,8 +29,19 @@ def adv_new(request):
 
 def detail_adv(request, pk):
     detail = get_object_or_404(Adv, pk = pk)
-    
-    return render(request, 'adv/detail_adv.html', {'detail': detail})
+    coment = detail.coment_adv.filter(moderation=True)
+    if request.method == "POST":
+        form = AdvComentForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.adv = detail
+            form.detail = detail
+            form.save()
+            return redirect(detail_adv, pk)
+    else:
+        form = AdvComentForm()
+    return render(request, 'adv/detail_adv.html', {'detail': detail, 'coments': coment, 'form': form})
 
 
 def adv_delete(request, pk):

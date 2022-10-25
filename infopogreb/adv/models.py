@@ -24,3 +24,19 @@ class Adv(models.Model):
         verbose_name = "Оголошення"
         verbose_name_plural = "Оголошення"
         
+
+class AdvComent(models.Model):
+    '''Коментарии'''
+    adv = models.ForeignKey(Adv, related_name='coment_adv', on_delete=models.CASCADE)
+    coment = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
+    moderation = models.BooleanField("Модерация", default=True)
+    
+    class Meta:
+        verbose_name = 'Коммент'
+        verbose_name_plural = 'Комменты'
+    
+    
+    def __str__(self):
+        return "{}".format(self.user)

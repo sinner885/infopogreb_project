@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    FAQ | {{ block.super }}
+{% endblock %}
+
+{% block name %}
+{{ block.super }}  <p>FAQ</p>
+{% endblock %}
+
+
+{% block content %}
+<section class="sample-text-area">
+    <div class="container box_1170">
+        <div class="col-lg-8">
+
+            <h1>select a FAQ category</h1>
+            {% for category in categories %}
+                <h3><a href="{% url 'faq:category_detail' category.slug %}">{{category.name}}</a></h3>
+                {% if category.description %}
+                    <p>{{category.description}}</p>
+                {% endif %}
+                <hr>
+            {% endfor %}
+
+        </div> 
+    </div>
+</section>
+{% endblock %}

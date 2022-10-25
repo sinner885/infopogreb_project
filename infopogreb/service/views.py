@@ -4,6 +4,9 @@ from .models import CategoryService, Service, Coment
 from .forms import ServiceForm, ComentForm
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.views.generic import ListView, DetailView, CreateView
+
+
 
 def service(request):
     cats = CategoryService.objects.annotate(Count ('service'))
@@ -14,6 +17,18 @@ def service(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'service/service.html', {'page_obj': page_obj, 'cats': cats, 'services': services})
 
+
+# class DetailService(DetailView):
+#     template_name = 'service/detail_service.html'
+#     model = Service
+#     context_object_name = 'detail'
+    
+#     def get(self, request, *args, **kwargs):
+#         self.object = self.get_object()
+#         self.object.views += 1
+#         self.object.save()
+#         context = self.get_context_data(object=self.object)
+#         return self.render_to_response(context)
 
 
 def detail_service(request, slug):
